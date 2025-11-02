@@ -34,7 +34,6 @@ app.use(
     credentials: true, // allow cookies
   })
 );
-s
 
 // ✅ Health check route
 app.get("/", (req, res) => {
