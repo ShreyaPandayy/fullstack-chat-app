@@ -23,16 +23,18 @@ const __dirname = path.resolve();
 app.use(express.json());
 app.use(cookieParser());
 
-// ✅ Dynamic CORS (works for both local + production)
+// ✅ Dynamic CORS (local + production)
 app.use(
   cors({
-    origin:
-      process.env.NODE_ENV === "production"
-        ? "https://fullstack-chat-app-two-sigma.vercel.app" // ✅ your live frontend URL on Vercel
-        : "http://localhost:5173", // ✅ for local testing
-    credentials: true,
+    origin: [
+      "http://localhost:5173", // local development
+      "https://fullstack-chat-app-two-sigma.vercel.app", // your Vercel frontend
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    credentials: true, // allow cookies
   })
 );
+s
 
 // ✅ Health check route
 app.get("/", (req, res) => {
